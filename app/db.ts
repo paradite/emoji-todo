@@ -3,7 +3,7 @@ import { drizzle } from "drizzle-orm/neon-http";
 import { pgTable, serial, varchar } from "drizzle-orm/pg-core";
 
 neonConfig.fetchConnectionCache = true;
-const sql = neon(process.env.POSTGRES_URL!, {
+const sql = neon(process.env.DATABASE_URL!, {
   fetchOptions: {
     cache: "no-store",
   },
