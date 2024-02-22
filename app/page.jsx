@@ -1,6 +1,7 @@
 import { db, todosTable } from "./db";
 import { submit } from "./actions";
 import { sql } from "drizzle-orm";
+import { emojiRegex } from "./regexes";
 
 export default async function Home({ searchParams }) {
   const todos = await db
@@ -29,7 +30,7 @@ export default async function Home({ searchParams }) {
         <input
           type="text"
           placeholder="🫡 (only emojis allowed)"
-          pattern="^[\p{Emoji}]+$"
+          pattern={emojiRegex.source}
           name="text"
           autoFocus
           maxLength="10"
