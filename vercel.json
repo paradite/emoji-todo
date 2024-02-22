@@ -1,7 +1,7 @@
 {
   "functions": {
     "app/**/*": {
-      "memory": 1769
+      "memory": 1000
     }
   }
 }
