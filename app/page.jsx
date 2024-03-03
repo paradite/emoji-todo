@@ -4,7 +4,10 @@ import { sql } from 'drizzle-orm';
 
 export default async function Home({ searchParams }) {
   const todos = await db
-    .select()
+    .select({
+      id: todosTable.id,
+      text: todosTable.text,
+    })
     .from(todosTable)
     .limit(20)
     .orderBy(searchParams.asc ? sql`${todosTable.id} ASC` : sql`${todosTable.id} DESC`);
