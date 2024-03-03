@@ -1,20 +1,18 @@
-import { db, todosTable } from "./db";
-import { submit } from "./actions";
-import { sql } from "drizzle-orm";
+import { db, todosTable } from './db';
+import { submit } from './actions';
+import { sql } from 'drizzle-orm';
 
 export default async function Home({ searchParams }) {
   const todos = await db
     .select()
     .from(todosTable)
     .limit(20)
-    .orderBy(
-      searchParams.asc ? sql`${todosTable.id} ASC` : sql`${todosTable.id} DESC`
-    );
+    .orderBy(searchParams.asc ? sql`${todosTable.id} ASC` : sql`${todosTable.id} DESC`);
 
   return (
     <main key={todos[0]?.id}>
       <h1>
-        Emoji TODO{" "}
+        Emoji TODO{' '}
         <a href="https://github.com/rauchg/emoji-todo" target="_blank">
           source
         </a>
