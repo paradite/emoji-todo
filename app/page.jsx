@@ -7,6 +7,7 @@ export default async function Home({ searchParams }) {
     .select({
       id: todosTable.id,
       text: todosTable.text,
+      created_at: todosTable.created_at,
     })
     .from(todosTable)
     .limit(20)
@@ -22,7 +23,9 @@ export default async function Home({ searchParams }) {
       </h1>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>{todo.text}</li>
+          <li key={todo.id}>
+            {todo.text} - {new Date(todo.created_at).toLocaleString()}
+          </li>
         ))}
       </ul>
 
