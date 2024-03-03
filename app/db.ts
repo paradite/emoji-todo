@@ -3,14 +3,14 @@ import { drizzle } from "drizzle-orm/neon-http";
 import { pgTable, serial, varchar } from "drizzle-orm/pg-core";
 
 neonConfig.fetchConnectionCache = true;
-const sql = neon(process.env.DATABASE_URL!, {
+const client = neon(process.env.DATABASE_URL!, {
   fetchOptions: {
     cache: "no-store",
   },
 });
-export const db = drizzle(sql);
+export const db = drizzle(client);
 
 export const todosTable = pgTable("todos", {
   id: serial("id").primaryKey(),
-  text: varchar("text", { length: 10 }),
+  text: varchar("text", { length: 10 }).default(""),
 });
